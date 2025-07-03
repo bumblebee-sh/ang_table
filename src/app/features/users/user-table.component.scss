@@ -1,13 +1,13 @@
-.user_table{
+.user_table {
   position: relative;
   height: 100%;
   padding: 20px;
 
-  &__filter{
+  &__filter {
     margin-bottom: 20px;
   }
 
-  &__data{
+  &__data {
     overflow-x: auto;
 
     .loading-more {
@@ -37,7 +37,7 @@
     }
   }
 
-  &__body{
+  &__body {
     height: 200px;
     overflow-y: auto;
   }

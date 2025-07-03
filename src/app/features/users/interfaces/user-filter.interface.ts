@@ -1,4 +1,4 @@
-import { UserAge } from "../enums/user-age.enum";
+import { UserAge } from '../enums/user-age.enum';
 
 export interface UserTableFilter {
   search: string;

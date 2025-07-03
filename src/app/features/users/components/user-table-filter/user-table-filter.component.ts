@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
@@ -11,7 +17,7 @@ import { UserAge } from '../../enums/user-age.enum';
   standalone: true,
   imports: [FormsModule, NzInputModule, NzSelectModule],
   templateUrl: './user-table-filter.component.html',
-  styleUrls: ['./user-table-filter.component.scss']
+  styleUrls: ['./user-table-filter.component.scss'],
 })
 export class UserTableFilterComponent implements OnInit, OnDestroy {
   @Output() filterChange = new EventEmitter<UserTableFilter>();
@@ -25,11 +31,7 @@ export class UserTableFilterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchSubject
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        takeUntil(this.destroy$)
-      )
+      .pipe(debounceTime(300), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(search => {
         this.search = search;
         this.emitFilterChange();
@@ -53,7 +55,7 @@ export class UserTableFilterComponent implements OnInit, OnDestroy {
     this.filterChange.emit({
       search: this.search,
       active: this.active,
-      dob: this.dob
+      dob: this.dob,
     });
   }
 }

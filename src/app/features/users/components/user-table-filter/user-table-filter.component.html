@@ -1,12 +1,21 @@
 <div class="filter">
   <div class="filter__item">
-    <input nz-input placeholder="Search" [(ngModel)]="search" (ngModelChange)="onSearchChange($event)" />
+    <input
+      nz-input
+      placeholder="Search"
+      [(ngModel)]="search"
+      (ngModelChange)="onSearchChange($event)"
+    />
   </div>
 
   <div class="filter__item">
     <span class="filter__label">Active:</span>
     <div class="filter__select">
-      <nz-select [(ngModel)]="active" (ngModelChange)="onFilterChange()" style="width: 120px;">
+      <nz-select
+        [(ngModel)]="active"
+        (ngModelChange)="onFilterChange()"
+        style="width: 120px"
+      >
         <nz-option [nzValue]="null" nzLabel="All"></nz-option>
         <nz-option [nzValue]="true" nzLabel="Active"></nz-option>
         <nz-option [nzValue]="false" nzLabel="Inactive"></nz-option>
@@ -17,7 +26,11 @@
   <div class="filter__item">
     <span class="filter__label">Date of Birth:</span>
     <div class="filter__select">
-      <nz-select [(ngModel)]="dob" (ngModelChange)="onFilterChange()" style="width: 160px;">
+      <nz-select
+        [(ngModel)]="dob"
+        (ngModelChange)="onFilterChange()"
+        style="width: 160px"
+      >
         <nz-option [nzValue]="null" nzLabel="All"></nz-option>
         <nz-option nzValue="under18" nzLabel="&lt; 18 years old"></nz-option>
         <nz-option nzValue="over18" nzLabel="> 18 years old"></nz-option>

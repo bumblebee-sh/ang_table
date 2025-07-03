@@ -5,7 +5,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
   selector: 'app-loader',
   imports: [NzSpinModule],
   templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.scss']
+  styleUrls: ['./loader.component.scss'],
 })
 export class LoaderComponent {
   @Input() size: 'small' | 'default' | 'large' = 'default';

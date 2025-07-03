@@ -1,17 +1,16 @@
 // theme variables
-:root{
+:root {
   // fonts
-  --navigation-font: "Doto", sans-serif;
-  --text-font: "Roboto Mono", monospace;
+  --navigation-font: 'Doto', sans-serif;
+  --text-font: 'Roboto Mono', monospace;
 
   // font size
   --title-size: 30px;
   --body-size: 16px;
 
-
   // colors
   --background: rgb(0 10 16);
-  --background-opacity: rgba(15,8,43, .5);
+  --background-opacity: rgba(15, 8, 43, 0.5);
   --background-light: #281b92;
   --background-lighter: rgb(22, 13, 55);
   --text-color: #fff;
@@ -27,26 +26,25 @@
   --content-width: 1440px;
 }
 
-
-.container{
+.container {
   max-width: var(--content-width);
   margin: 0 auto;
 }
 
-html{
+html {
   font-family: var(--text-font);
   font-size: var(--body-size);
 }
 
-.text-red{
+.text-red {
   color: var(--text-color-error);
 }
-.text-green{
+.text-green {
   color: var(--text-color-green);
 }
 
 // highlight
-mark{
+mark {
   padding: 0;
   background-color: var(--text-color-highlight);
 }

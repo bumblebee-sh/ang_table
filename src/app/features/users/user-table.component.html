@@ -1,21 +1,29 @@
 <div class="user_table">
-  @if(isLoading) {
-    <app-loader [loading]="isLoading" size="large" loadingText="Loading users..."></app-loader>
+  @if (isLoading) {
+    <app-loader
+      [loading]="isLoading"
+      size="large"
+      loadingText="Loading users..."
+    ></app-loader>
   }
 
-  @if(!isLoading) {
+  @if (!isLoading) {
     <div class="user_table__filter">
-      <app-user-table-filter (filterChange)="onFilterChange($event)"></app-user-table-filter>
-    </div>  
+      <app-user-table-filter
+        (filterChange)="onFilterChange($event)"
+      ></app-user-table-filter>
+    </div>
     <div class="user_table__data">
-      <nz-table #userTable [nzData]="displayedUsers" [nzFrontPagination]="false">
+      <nz-table
+        #userTable
+        [nzData]="displayedUsers"
+        [nzFrontPagination]="false"
+      >
         <thead>
           <tr>
             @for (column of headerColumn; track column) {
-              @if(column.sortFn) {  
-                <th
-                  [nzSortFn]="column.sortFn"
-                >{{ column.title }}</th>
+              @if (column.sortFn) {
+                <th [nzSortFn]="column.sortFn">{{ column.title }}</th>
               } @else {
                 <th>{{ column.title }}</th>
               }
@@ -23,23 +31,32 @@
           </tr>
         </thead>
         <tbody class="user_table__body">
-          @for(user of userTable.data; track user) {
+          @for (user of userTable.data; track user) {
             <tr>
-              <td [appHighlight]="user.firstName" [appHighlightTerm]="filter.search"></td>
-              <td [appHighlight]="user.lastName" [appHighlightTerm]="filter.search"></td>
+              <td
+                [appHighlight]="user.firstName"
+                [appHighlightTerm]="filter.search"
+              ></td>
+              <td
+                [appHighlight]="user.lastName"
+                [appHighlightTerm]="filter.search"
+              ></td>
               <td>{{ user.dob | date: 'dd MMMM yyyy' }}</td>
-              <td [appHighlight]="user.phone" [appHighlightTerm]="filter.search"></td>
+              <td
+                [appHighlight]="user.phone"
+                [appHighlightTerm]="filter.search"
+              ></td>
               <td>
-                <i 
+                <i
                   nz-icon
-                  [className]="user.active ? 'text-green' : 'text-red'" 
+                  [className]="user.active ? 'text-green' : 'text-red'"
                   [nzType]="user.active ? 'check' : 'close'"
                 ></i>
               </td>
             </tr>
-          } 
+          }
         </tbody>
       </nz-table>
-    </div> 
+    </div>
   }
 </div>

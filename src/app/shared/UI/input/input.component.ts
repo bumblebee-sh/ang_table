@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-input',
   imports: [FormsModule, NzInputModule],
   templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  styleUrl: './input.component.scss',
 })
-export class InputComponent {
-
-}
+export class InputComponent {}

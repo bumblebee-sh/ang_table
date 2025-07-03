@@ -1,4 +1,11 @@
-import { Component, OnInit, HostListener, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -13,9 +20,7 @@ import { UserService } from './services/user.service';
 import { User } from './interfaces/user.interface';
 import { UserAge } from './enums/user-age.enum';
 
-import {
-  NzTableSortFn,
-} from 'ng-zorro-antd/table';
+import { NzTableSortFn } from 'ng-zorro-antd/table';
 
 interface ColumnItem {
   title: string;
@@ -24,19 +29,29 @@ interface ColumnItem {
 
 @Component({
   selector: 'app-user-table',
-  imports: [CommonModule, NzTableModule, NzInputModule, NzIconModule, NzSpinModule, FormsModule, HighlightDirective, UserTableFilterComponent, LoaderComponent],
+  imports: [
+    CommonModule,
+    NzTableModule,
+    NzInputModule,
+    NzIconModule,
+    NzSpinModule,
+    FormsModule,
+    HighlightDirective,
+    UserTableFilterComponent,
+    LoaderComponent,
+  ],
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
   @ViewChild('userTable', { static: false }) userTable!: any;
-  
+
   users: User[] = [];
   displayedUsers: User[] = [];
   filteredUsers: User[] = [];
   filter: UserTableFilter = { search: '', active: null, dob: null };
   isLoading: boolean = false;
-  
+
   // TODO: infinity scroll
   // https://stackblitz.com/edit/nz-table-infinity-scroll-manual?file=src%2Fapp%2Fapp.component.ts
 
@@ -46,7 +61,7 @@ export class UserTableComponent implements OnInit {
   pageSize = 50;
   hasMoreData = true;
   isLoadingMore = false;
-  
+
   headerColumn: ColumnItem[] = [
     {
       title: 'First Name',
@@ -58,7 +73,8 @@ export class UserTableComponent implements OnInit {
     },
     {
       title: 'Date of Birth',
-      sortFn: (a: User, b: User) => new Date(a.dob).getTime() - new Date(b.dob).getTime(),
+      sortFn: (a: User, b: User) =>
+        new Date(a.dob).getTime() - new Date(b.dob).getTime(),
     },
     {
       title: 'Phone Number',
@@ -66,14 +82,14 @@ export class UserTableComponent implements OnInit {
     {
       title: 'Active',
     },
-  ]
-  
+  ];
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.isLoading = true;
-    
-    this.userService.getUsers().subscribe((users) => {
+
+    this.userService.getUsers().subscribe(users => {
       this.users = users;
       this.applyFiltersAndSorting();
       this.loadMoreUsers();
@@ -94,26 +110,29 @@ export class UserTableComponent implements OnInit {
     // Text search
     if (this.filter.search) {
       const searchQuery = this.filter.search.trim().toLowerCase();
-      filtered = filtered.filter(user =>
-        user.firstName.toLowerCase().includes(searchQuery) ||
-        user.lastName.toLowerCase().includes(searchQuery) ||
-        user.phone.toLowerCase().includes(searchQuery)
+      filtered = filtered.filter(
+        user =>
+          user.firstName.toLowerCase().includes(searchQuery) ||
+          user.lastName.toLowerCase().includes(searchQuery) ||
+          user.phone.toLowerCase().includes(searchQuery)
       );
     }
-    
+
     // Active filter
     if (this.filter.active !== null) {
       filtered = filtered.filter(user => user.active === this.filter.active);
     }
-    
+
     // DoB filter
     if (this.filter.dob) {
       filtered = filtered.filter(user => {
-        const age = (Date.now() - new Date(user.dob).getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+        const age =
+          (Date.now() - new Date(user.dob).getTime()) /
+          (365.25 * 24 * 60 * 60 * 1000);
         return this.filter.dob === UserAge.UNDER_18 ? age < 18 : age >= 18;
       });
     }
-    
+
     this.filteredUsers = filtered;
   }
 
@@ -126,11 +145,11 @@ export class UserTableComponent implements OnInit {
 
   loadMoreUsers() {
     if (this.isLoadingMore || !this.hasMoreData) return;
-    
+
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     const newUsers = this.filteredUsers.slice(startIndex, endIndex);
-    
+
     if (newUsers.length > 0) {
       this.displayedUsers = [...this.displayedUsers, ...newUsers];
       this.currentPage++;
@@ -144,16 +163,18 @@ export class UserTableComponent implements OnInit {
   onScroll(event: any) {
     // debounce
     if (this.isLoadingMore || !this.hasMoreData) return;
-    
+
     const element = event.target;
     const scrollTop = element.scrollTop || document.documentElement.scrollTop;
-    const scrollHeight = element.scrollHeight || document.documentElement.scrollHeight;
-    const clientHeight = element.clientHeight || document.documentElement.clientHeight;
-    
+    const scrollHeight =
+      element.scrollHeight || document.documentElement.scrollHeight;
+    const clientHeight =
+      element.clientHeight || document.documentElement.clientHeight;
+
     if (scrollTop + clientHeight >= scrollHeight - 200) {
       this.isLoadingMore = true;
       this.loadMoreUsers();
-      this.isLoadingMore = false;      
+      this.isLoadingMore = false;
     }
   }
 }

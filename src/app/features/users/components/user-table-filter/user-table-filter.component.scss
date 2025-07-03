@@ -1,19 +1,17 @@
-.filter{
+.filter {
   display: grid;
   grid-template-columns: 1fr repeat(2, minmax(100px, auto));
   gap: 20px;
 
-  &__item{
+  &__item {
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  &__label{
-   
+  &__label {
   }
-  
-  &__select{
-    
+
+  &__select {
   }
 }
