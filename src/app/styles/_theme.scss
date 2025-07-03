@@ -1,0 +1,52 @@
+// theme variables
+:root{
+  // fonts
+  --navigation-font: "Doto", sans-serif;
+  --text-font: "Roboto Mono", monospace;
+
+  // font size
+  --title-size: 30px;
+  --body-size: 16px;
+
+
+  // colors
+  --background: rgb(0 10 16);
+  --background-opacity: rgba(15,8,43, .5);
+  --background-light: #281b92;
+  --background-lighter: rgb(22, 13, 55);
+  --text-color: #fff;
+  --text-color-gray: #bebebe;
+  --text-color-error: #a00000;
+  --text-color-green: #1ea296;
+  --text-color-highlight: #ffb06f;
+  //--theme-color: #302052;
+  --theme-color: #1ea296;
+  --border-color: #2c2c2c;
+
+  // sizes
+  --content-width: 1440px;
+}
+
+
+.container{
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+html{
+  font-family: var(--text-font);
+  font-size: var(--body-size);
+}
+
+.text-red{
+  color: var(--text-color-error);
+}
+.text-green{
+  color: var(--text-color-green);
+}
+
+// highlight
+mark{
+  padding: 0;
+  background-color: var(--text-color-highlight);
+}
