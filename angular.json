@@ -44,7 +44,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/user-table/",
+              "baseHref": "/ang_table/",
               "budgets": [
                 {
                   "type": "initial",
